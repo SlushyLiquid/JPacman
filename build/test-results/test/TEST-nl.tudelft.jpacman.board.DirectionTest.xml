@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nl.tudelft.jpacman.board.DirectionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-07-29T05:55:48" hostname="DESKTOP-TAEMN0N" time="0.239">
+  <properties/>
+  <testcase name="testNorth()" classname="nl.tudelft.jpacman.board.DirectionTest" time="0.239"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
