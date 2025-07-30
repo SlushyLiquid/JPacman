@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.board;
 
 import nl.tudelft.jpacman.sprite.Sprite;
+import org.junit.jupiter.api.Test;
 
 /**
  * Basic implementation of square.
@@ -26,4 +27,8 @@ class BasicSquare extends Square {
     public Sprite getSprite() {
         return null;
     }
+
+    @Test
+    void test() {}
+
 }
