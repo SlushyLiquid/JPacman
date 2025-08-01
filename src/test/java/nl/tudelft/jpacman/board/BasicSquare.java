@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.board;
-
+import org.mockito.Mockito;
+import static org.mockito.ArgumentMatchers.*;
 import nl.tudelft.jpacman.sprite.Sprite;
 import org.junit.jupiter.api.Test;
 
