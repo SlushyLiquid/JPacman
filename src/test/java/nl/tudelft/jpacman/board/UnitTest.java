@@ -88,7 +88,7 @@ public class UnitTest {
     }
 
     @Test
-    void occupyNullSquareThrowsAssertionError() {
+    void occupyNullSquareThrowsAssertionErrorTest() {
         assertThatThrownBy(() -> unit.occupy(null))
                 .isInstanceOf(AssertionError.class);
     }
@@ -105,7 +105,7 @@ public class UnitTest {
     }
 
     @Test
-    void unitRemovedFromPreviousSquareBeforeOccupyNew() {
+    void unitRemovedFromPreviousSquareBeforeOccupyNewTest() {
         Square newSquare = mock(Square.class);
         List<Unit> occupants1 = new ArrayList<>();
 
@@ -132,8 +132,6 @@ public class UnitTest {
             occupants2.remove(inv.getArgument(0));
             return null;
         }).when(newSquare).remove(any());
-
-
         when(square1.isAccessibleTo(any())).thenReturn(true);
         when(newSquare.isAccessibleTo(any())).thenReturn(true);
         unit.occupy(square1);
@@ -142,7 +140,7 @@ public class UnitTest {
     }
 
     @Test
-    void unitRemovedFromSquareOnLeave() {
+    void unitRemovedFromSquareOnLeaveTest() {
         List<Unit> occupants = new ArrayList<>();
         occupants.add(unit);
         when(square1.getOccupants()).thenReturn(occupants);
@@ -153,7 +151,7 @@ public class UnitTest {
     }
 
     @Test
-    void invariantAfterOccupyTestWithMock() {
+    void invariantAfterOccupyTest() {
         List<Unit> occupants = new ArrayList<>();
         when(square1.getOccupants()).thenReturn(occupants);
         doAnswer(invocation -> {
@@ -184,7 +182,7 @@ public class UnitTest {
     }
 
     @Test
-    void invariantPassesIfUnitInSquareOccupants() {
+    void invariantPassesIfUnitInSquareOccupantsTest() {
         Square mockSquare = mock(Square.class);
         List<Unit> occupants = new ArrayList<>();
         when(mockSquare.getOccupants()).thenAnswer(inv -> occupants);
@@ -199,7 +197,7 @@ public class UnitTest {
     }
 
     @Test
-    void invariantFailsWhenUnitNotInOccupantsList() {
+    void invariantFailsWhenUnitNotInOccupantsListTest() {
         List<Unit> occupants = new ArrayList<>();
         occupants.add(unit);
         when(square1.getOccupants()).thenReturn(occupants);
@@ -228,7 +226,7 @@ public class UnitTest {
     }
 
     @Test
-    void squaresAheadOfWithoutOccupyingThrows() {
+    void squaresAheadOfWithoutOccupyingThrowsTest() {
         unit.setDirection(Direction.EAST);
         assertThatThrownBy(() -> unit.squaresAheadOf(1))
                 .isInstanceOf(AssertionError.class);
