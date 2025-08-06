@@ -100,7 +100,7 @@ public class SquareTest {
     }
 
     @Test
-    public void testSquare() {
+    public void squareTest() {
         List<Unit> list =  square.getOccupants();
         assertThat(list).hasSize(0);
         Square sq = square.getSquareAt(northDirection);
@@ -126,6 +126,25 @@ public class SquareTest {
     }
 
     @Test
+    void directionLinkConsistencyTest() {
+        square.link(squareEast, Direction.EAST);
+        squareEast.link(square, Direction.WEST);
+        assertThat(square.getSquareAt(Direction.EAST)).isEqualTo(squareEast);
+        assertThat(squareEast.getSquareAt(Direction.WEST)).isEqualTo(square);
+    }
+
+    @Test
+    void unlinkedDirectionReturnsNullTest() {
+        assertThat(square.getSquareAt(Direction.SOUTH)).isNull();
+    }
+
+    @Test
+    public void linkWithNullDirection_shouldThrow() {
+        assertThatThrownBy(() -> square.link(squareNorth, null))
+                .isInstanceOf(NullPointerException.class);
+    }
+
+    @Test
     public void getAndPutOccupantsTest(){
         List<Unit> list =  square.getOccupants();
         assertThat(list).as("Square should initially have no occupants").hasSize(0);
@@ -146,6 +165,31 @@ public class SquareTest {
         assertThat(list.get(0)).isEqualTo(unit);
         assertThat(list.get(1)).isEqualTo(unit2);
         assertThat(list.get(2)).isEqualTo(unit3);
+    }
+
+    @Test
+    public void putNullTest() {
+        // should fail
+        assertThatThrownBy(() -> square.put(null))
+                .isInstanceOf(AssertionError.class);
+        square.put(unit);
+        assertThatThrownBy(() -> square.put(unit)).isInstanceOf(AssertionError.class);;
+    }
+
+    @Test
+    public void putDuplicateUnitTest() {
+        // should fail
+        when(unit.hasSquare()).thenReturn(true);
+        when(unit.getSquare()).thenReturn(square);
+        square.put(unit);
+        assertThatThrownBy(() -> square.put(unit))
+                .isInstanceOf(AssertionError.class);
+    }
+
+    @Test
+    public void getSquareAtNullTest() {
+        // should return null
+        assertThat(square.getSquareAt(null)).isNull();
     }
 
     @Test
@@ -178,6 +222,13 @@ public class SquareTest {
     }
 
     @Test
+    public void removeNullTest() {
+        // should fail
+        assertThatThrownBy(() -> square.remove(null))
+                .isInstanceOf(AssertionError.class);
+    }
+
+    @Test
     public void invariantTest(){
         List<Unit> list =  square.getOccupants();
         assertThat(list).as("Square should initially have no occupants").hasSize(0);
@@ -192,6 +243,14 @@ public class SquareTest {
         square.put(unit2);
         assertThat(square.invariant()).isTrue();
         square.put(unit3);
+        assertThat(square.invariant()).isFalse();
+    }
+
+    @Test
+    public void invariantFailingTest() {
+        when(unit.hasSquare()).thenReturn(true);
+        when(unit.getSquare()).thenReturn(squareNorth);
+        square.put(unit);
         assertThat(square.invariant()).isFalse();
     }
 
