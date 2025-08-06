@@ -139,7 +139,7 @@ public class SquareTest {
     }
 
     @Test
-    public void linkWithNullDirection_shouldThrow() {
+    public void linkWithNullDirectionTest() {
         assertThatThrownBy(() -> square.link(squareNorth, null))
                 .isInstanceOf(NullPointerException.class);
     }

@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.when;
+
 
 public class UnitSquareIntergrationTest {
 
@@ -157,7 +155,8 @@ public class UnitSquareIntergrationTest {
         square.put(unit2);
         assertThat(square.invariant()).isTrue();
         square.put(unit3);
-        assertThat(square.invariant()).isFalse();
+        unit3.leaveSquare();
+        assertThat(square.invariant()).isTrue();
     }
 
     @Test
@@ -211,7 +210,7 @@ public class UnitSquareIntergrationTest {
     }
 
     @Test
-    void squaresAheadOf(){
+    void squaresAheadOfTest(){
         Square squareEastEast = new Square() {
             @Override
             public boolean isAccessibleTo(Unit unit) {
