@@ -1,0 +1,112 @@
+Test Report: JPacman Manual Testing
+Tester: Jarren Morris
+
+
+Test Case ID: 1
+Title: Window appears
+Steps:
+  1. Launch Jpacman (Click "Run 'Launcher.main()'")
+  2. Observe game window
+Expected:
+  - Main window opens with title "JPacman"
+  - Game is in "pre-start" state with all sprites in their initial positions
+  - Score is 0
+Actual:
+  - Main window opened with title "JPacman"
+  - Window was approximately 400x400
+  - All ghosts ere in the center, non-overlapping
+  - Score was 0
+Result: PASS
+Comments: N/A
+
+
+Test Case ID: 2
+Title: Sprite rendering
+Steps:
+  1. Start a new game
+  2. Observe the player and ghost sprites
+Expected:
+  - All sprites are displayed at the correct start positions
+  - All pellets are displayed
+  - Bottom of ghost sprites are animating
+  - Pac-Man mouth is animating
+Actual:
+  - Ghost sprites begin in the center and begin finding Pac-Man
+  - All pellets are displayed symmetrically
+  - Bottom of ghost sprites are animating
+  - Pac-Man mouth is animating (initially facing right)
+Result: PASS
+Comments: N/A
+
+
+Test Case ID: 3
+Title: Sprite direction
+Steps:
+  1. Press arrow keys (Up, Down, Left, Right)
+  2. Observe Pac-Man’s mouth orientation
+Expected:
+  - Pac-Man’s mouth opens toward the pressed direction
+  - If possible, Pac-Man moves 1 unit in the specified direction
+  - If the space Pac-Man moves to has a pellet, it gets consumed
+Actual:
+  - Regardless of whether the movement of Pac-Man was successful,
+      Pac-Man's mouth began facing the direction of the key pressed
+  - When there was a wall in the way, Pac-Man did not move
+  - When there was an empty space (or one with a pellet), Pac-Man
+      moved into it
+Result: PASS
+Comments: N/A
+
+
+Test Case ID: 4
+Title: Sprite animation
+Steps:
+  1. Move Pac-Man continuously
+  2. Watch mouth opening/closing cycle
+Expected:
+  - Mouth should alternate between open and closed frames
+Actual:
+  - Mouth infinitely loops its open to closed to open animation
+Result: PASS
+Comments: N/A
+
+
+Test Case ID: 5
+Title: Wrap-around
+Steps:
+  1. Move Pac-Man off the left edge of the maze
+  2. He should re-appear on the right edge (and vice versa)
+Expected:
+  - Instant wrap-around with no visual glitch
+Actual:
+  - Pac-Man successfully moved off the right edge onto the left side
+      and vice versa.
+Result: PASS
+Comments: N/A
+
+
+Test Case ID: 6
+Title: Play a level – end-to-end functionality
+Steps:
+  1. Start level 1
+  2. Eat all pellets
+  3. Avoid ghosts
+  4. Finish level, observe transition to level 2
+Expected:
+  - Level completes when all pellets are eaten
+  - Scoring increments by 10 for each pellet consumed
+  - Transition to next level occurs smoothly
+Actual:
+  - Score incremented by 10 for each pellet consumed
+  - Score hit 1780
+  - Level ends when all pellets are consumed and game freezes
+Result: FAIL
+Comments:
+  - After beating Level 1, the game halts and no I/O or buttons work.
+      The game must be quit and relaunched to play again.
+
+
+Summary:
+  Total tests: 6
+  Passed: 5
+  Failed: 1
